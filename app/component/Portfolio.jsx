@@ -124,7 +124,7 @@ const skillGroups = [
   { label: "Tools & platforms", items: ["Git", "GitHub", "Linux", "Kali Linux", "Vercel"] },
 ];
 
-const focusAreas = ["Full-stack web apps", "SOC & threat detection", "REST API design"];
+const focusAreas = ["Full-stack web apps", "SOC & threat detection"];
 
 function useTypewriterLoop(text, { typeSpeed = 45, eraseSpeed = 25, holdMs = 1800, pauseMs = 500 } = {}) {
   const [out, setOut] = useState("");
@@ -293,7 +293,7 @@ function RightRail() {
               <dt className="mono text-xs mb-1" style={{ color: palette.muted }}>certification</dt>
               <dd className="text-sm" style={{ color: palette.text }}>Intro to Cybersecurity</dd>
             </div>
-          </dl>
+          </dl> 
         </div>
 
         <div className="p-5 rounded" {...spotlightHandlers()} style={spotlightStyle()}>
