@@ -57,6 +57,14 @@ function GithubIcon({ size = 18, color = "currentColor" }) {
   );
 }
 
+function FacebookIcon({ size = 18, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+      <path d="M24 12.07C24 5.66 18.63.28 12 .28S0 5.66 0 12.07c0 5.79 4.39 10.6 10.13 11.44v-8.1H7.08v-3.34h3.05V9.41c0-3 1.8-4.67 4.55-4.67 1.32 0 2.7.24 2.7.24v2.94h-1.52c-1.5 0-1.97.93-1.97 1.88v2.27h3.35l-.54 3.34h-2.81v8.1C19.61 22.67 24 17.86 24 12.07Z" />
+    </svg>
+  );
+}
+
 const palette = {
   bg: "#0A0E14",
   surface: "#131920",
@@ -438,6 +446,9 @@ export default function Portfolio() {
             <div className="flex gap-3 px-2 pt-4" style={{ borderTop: `1px solid ${palette.border}` }}>
               <a href="https://github.com/joxus3000" target="_blank" rel="noreferrer" style={{ color: palette.muted }}>
                 <GithubIcon size={18} />
+              </a>
+              <a href="https://www.facebook.com/haha.sibulo" target="_blank" rel="noreferrer" style={{ color: palette.muted }}>
+                <FacebookIcon size={18} />
               </a>
               <a href="mailto:joshsibulo123@gmail.com" style={{ color: palette.muted }}>
                 <Mail size={18} />

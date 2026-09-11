@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Joshua Sibulo — Full-Stack Developer & Cybersecurity",
+  title: "Josh Sibulo",
   description:
     "Portfolio of Joshua Sibulo, a Computer Science graduate specializing in full-stack web development and cybersecurity.",
   icons: {
