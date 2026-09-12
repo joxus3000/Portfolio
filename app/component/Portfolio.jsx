@@ -535,13 +535,16 @@ export default function Portfolio() {
 
               <div className="mt-10 pt-8" style={{ borderTop: `1px solid ${palette.border}` }}>
                 <p className="mono text-xs mb-4" style={{ color: palette.accent2 }}>certifications</p>
-                <div className="inline-block p-4 rounded" {...spotlightHandlers()} style={spotlightStyle()}>
+                <div className="inline-flex flex-col items-center gap-3 p-4 rounded" {...spotlightHandlers()} style={spotlightStyle()}>
                   <div
                     data-iframe-width="150"
                     data-iframe-height="270"
                     data-share-badge-id="43257ece-66d6-4c0e-a933-836dd4566a3b"
                     data-share-badge-host="https://www.credly.com"
                   />
+                  <p className="text-sm font-medium text-center" style={{ color: palette.text }}>
+                    Intro to Cybersecurity I
+                  </p>
                 </div>
               </div>
             </section>
