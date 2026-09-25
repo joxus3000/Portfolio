@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useState, useEffect, useRef } from "react";
-import { Mail, Phone, MapPin, ExternalLink, Menu, X, Copy, Check } from "lucide-react";
+import { Mail, Phone, MapPin, ExternalLink, Menu, X, Copy, Check, FileText } from "lucide-react";
 
 function spotlightHandlers() {
   return {
@@ -339,9 +339,52 @@ function RightRail() {
   );
 }
 
+function CertModal({ open, onClose, title, src }) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className="fixed inset-0 flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.75)", zIndex: 50 }}
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-3xl rounded overflow-hidden flex flex-col"
+        style={{ background: palette.surface, border: `1px solid ${palette.border}`, maxHeight: "85vh" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between px-4 py-3 shrink-0" style={{ borderBottom: `1px solid ${palette.border}` }}>
+          <span className="mono text-sm" style={{ color: palette.text }}>{title}</span>
+          <button onClick={onClose} style={{ color: palette.muted }} aria-label="Close">
+            <X size={18} />
+          </button>
+        </div>
+        <div className="flex-1 overflow-auto flex items-center justify-center p-4" style={{ background: "#fff" }}>
+          <img src={src} alt={title} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Portfolio() {
   const [active, setActive] = useState("about");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [certOpen, setCertOpen] = useState(false);
   const refs = useRef({});
   const typed = useTypewriterLoop("Computer science graduate — full-stack dev & cybersecurity");
 
@@ -535,16 +578,41 @@ export default function Portfolio() {
 
               <div className="mt-10 pt-8" style={{ borderTop: `1px solid ${palette.border}` }}>
                 <p className="mono text-xs mb-4" style={{ color: palette.accent2 }}>certifications</p>
-                <div className="inline-flex flex-col items-center gap-3 p-4 rounded" {...spotlightHandlers()} style={spotlightStyle()}>
-                  <div
-                    data-iframe-width="150"
-                    data-iframe-height="270"
-                    data-share-badge-id="43257ece-66d6-4c0e-a933-836dd4566a3b"
-                    data-share-badge-host="https://www.credly.com"
-                  />
-                  <p className="text-sm font-medium text-center" style={{ color: palette.text }}>
-                    Intro to Cybersecurity I
-                  </p>
+
+                <div className="flex flex-wrap gap-6">
+                  <div className="inline-flex flex-col items-start gap-3 p-4 rounded" {...spotlightHandlers()} style={spotlightStyle()}>
+                    <div
+                      data-iframe-width="150"
+                      data-iframe-height="270"
+                      data-share-badge-id="43257ece-66d6-4c0e-a933-836dd4566a3b"
+                      data-share-badge-host="https://www.credly.com"
+                    />
+                    <p className="text-sm font-semibold" style={{ color: palette.text }}>
+                      Intro to Cybersecurity I
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setCertOpen(true)}
+                    className="inline-flex flex-col items-start gap-3 p-4 rounded text-left transition-colors"
+                    {...spotlightHandlers()}
+                    style={spotlightStyle()}
+                  >
+                    <div style={{ border: `1px solid ${palette.border}`, borderRadius: 4, overflow: "hidden", width: 190 }}>
+                      <img
+                        src="/tesda-logo.png"
+                        alt="TESDA logo"
+                        style={{ width: "100%", height: 190, objectFit: "contain", background: "#fff", display: "block" }}
+                      />
+                      <div style={{ background: palette.border, padding: "6px 0" }}>
+                        <p className="mono text-xs text-center" style={{ color: palette.muted }}>tap to view</p>
+                      </div>
+                    </div>
+                    <p className="text-sm font-semibold" style={{ color: palette.text }}>
+                      TESDA NC II Certificate
+                    </p>
+                  </button>
                 </div>
               </div>
             </section>
@@ -590,6 +658,13 @@ export default function Portfolio() {
         </div>
       </div>
       <Script src="https://cdn.credly.com/assets/utilities/embed.js" strategy="lazyOnload" />
+
+      <CertModal
+        open={certOpen}
+        onClose={() => setCertOpen(false)}
+        title="TESDA NC II Certificate"
+        src="/Certificate.png"
+      />
     </div>
   </div>
   );
