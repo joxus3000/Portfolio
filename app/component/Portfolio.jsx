@@ -132,7 +132,8 @@ const skillGroups = [
   { label: "Tools & platforms", items: ["Git", "GitHub", "Linux", "Kali Linux", "Vercel"] },
 ];
 
-const focusAreas = ["Full-stack web apps", "SOC & threat detection", "REST API design"];
+const focusAreas = ["Full-stack web development", "Cybersecurity / SOC & threat detection", "IT infrastructure & systems support", "Documentation & cross-functional coordination"];
+
 
 function useTypewriterLoop(text, { typeSpeed = 45, eraseSpeed = 25, holdMs = 1800, pauseMs = 500 } = {}) {
   const [out, setOut] = useState("");
